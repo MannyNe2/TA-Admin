@@ -1,0 +1,23 @@
+[
+  {
+    "id": 0,
+    "title": "Dashboard",
+    "subtitle": "View platform statistics and performance metrics",
+    "icon": "mdi-speedometer",
+    "to": "/"
+  },
+  {
+    "id": 1,
+    "title": "Providers",
+    "subtitle": "Manage service providers",
+    "icon": "mdi-domain",
+    "to": "/providers"
+  },
+  {
+    "id": 2,
+    "title": "Routes",
+    "subtitle": "Manage provider routes",
+    "icon": "mdi-bus",
+    "to": "/routes"
+  }
+]

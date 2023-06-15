@@ -1,0 +1,17 @@
+[
+  {
+    "firstName": "Dennis",
+    "middleName": "The",
+    "lastName": "Menace",
+    "phone": "+251933333333",
+    "email": "dennis@gmail.com",
+    "password": "12345678"
+  },
+  {
+    "firstName": "Austin",
+    "middleName": "Danger",
+    "lastName": "Powers",
+    "phone": "+251911111111",
+    "password": "12345678"
+  }
+]
