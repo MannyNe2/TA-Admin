@@ -1,0 +1,40 @@
+// app global css in SCSS form
+// app global css in SCSS form
+.bg-translucent {
+  background: $translucent !important;
+}
+
+.bg-dark-translucent {
+  background: $dark-translucent !important;
+}
+
+.bg-light-page-translucent {
+  background: $light-page-translucent !important;
+}
+.bg-dark-page-translucent {
+  background: $dark-page-translucent !important;
+}
+
+.bg-dark-page {
+  background: $dark-page !important;
+}
+
+.bg-light-page {
+  background: $light-page !important;
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(5px);
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(10px);
+}
+
+.backdrop-blur-lg {
+  backdrop-filter: blur(15px);
+}
+
+.backdrop-blur-xl {
+  backdrop-filter: blur(20px);
+}
