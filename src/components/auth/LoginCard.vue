@@ -77,21 +77,17 @@ export default defineComponent({
     const store = useIdentityStore();
 
     async function onSubmit() {
-      const loginStatus = await store.login({
-        email: email.value,
-        password: password.value,
-      });
-      if (loginStatus.success) {
-        Notify.create({
-          message: 'User logged in',
-          type: 'positive',
+      try {
+        await store.login(email.value, password.value).then((data) => {
+          if (data) {
+            Notify.create({
+              message: data.message,
+              type: 'negative',
+            });
+          }
         });
-        router.push('/');
-      } else {
-        Notify.create({
-          message: loginStatus.message,
-          type: 'negative',
-        });
+      } catch (error) {
+        console.log(error);
       }
     }
 

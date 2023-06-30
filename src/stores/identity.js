@@ -1,6 +1,9 @@
 import { defineStore } from 'pinia';
 import storage from 'store';
 import { fakeLoginEndpoint } from 'src/services/fake-auth';
+import { hindekeClient } from 'src/config/apollo';
+import signIn from 'src/queries/signIn.gql';
+import { Notify } from 'quasar';
 
 export const useIdentityStore = defineStore('identity', {
   state: () => ({
@@ -52,23 +55,43 @@ export const useIdentityStore = defineStore('identity', {
       storage.remove('roles');
     },
 
-    async login(credentials) {
-      this.clear();
+    async login(address, password) {
       // TODO: Call login endpoint here
       try {
-        const response = await fakeLoginEndpoint(credentials);
-        this.setToken(response.accessToken);
-        this.setProfile(response.user);
-        this.setRoles(response.roles);
-        return {
-          success: true,
-        };
+        const res = await hindekeClient
+          .query({
+            query: signIn,
+            variables: {
+              address: address,
+              password: password,
+            },
+          })
+          .then(({ data }) => data && data.signIn);
+        if (res) {
+          console.log(res);
+          const user = {
+            firstName: res.firstName,
+            lastName: res.lastName,
+            middleName: res.middleName,
+            phone: res.phone,
+            userId: res.userId,
+          };
+          try {
+            this.setToken(res.accessToken);
+            this.setProfile(user);
+            this.setRoles(res.role);
+            Notify.create({
+              message: 'User logged in',
+              type: 'positive',
+            });
+            this.router.push('/');
+          } catch (error) {
+            console.error(error);
+          }
+        }
+        //router.push('/home');
       } catch (error) {
-        console.log(error);
-        return {
-          success: false,
-          message: error.message,
-        };
+        return error;
       }
     },
 

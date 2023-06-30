@@ -10,6 +10,7 @@
 
 const { configure } = require('quasar/wrappers');
 const graphql = require('@rollup/plugin-graphql');
+require('dotenv').config();
 
 module.exports = configure(function( /* ctx */ ) {
     return {
@@ -63,7 +64,10 @@ module.exports = configure(function( /* ctx */ ) {
 
             // publicPath: '/',
             // analyze: true,
-            env: require('dotenv').config().parsed,
+            env: {
+                HINDEKE_GRAPHQL_HTTP_URL: process.env.HINDEKE_GRAPHQL_HTTP_URL,
+                HINDEKE_GRAPHQL_WS_URL: process.env.HINDEKE_GRAPHQL_WS_URL,
+            },
             // rawDefine: {}
             // ignorePublicFolder: true,
             // minify: false,
